@@ -1,1 +1,69 @@
+package guis;
 
+import BreezySwing.*;
+import objects.*;
+import java.util.ArrayList;
+import javax.swing.*;
+
+public class SortGUI extends GBDialog {
+	private AllStudents students;
+	private JButton nameSortButton = addButton("Sort By Name", 1,1,1,1);
+	private JButton gradeSortButton = addButton("Sort By Grade", 1,2,1,1);
+	private JList<String> list = addList(2,1,1,1);
+	private DefaultListModel<String> model = (DefaultListModel<String>) list.getModel();
+	
+	public SortGUI(JFrame frm, AllStudents students) {
+		super(frm);
+		this.students = students;
+		setSize(500, 300);
+		setTitle("Sort Students");
+	}
+	
+	public void buttonClicked(JButton buttonObj) {
+		if(buttonObj == nameSortButton) {
+			
+		}
+		if(buttonObj == gradeSortButton) {
+			
+		}
+	}
+
+	public void resetFrame() {
+		
+	}
+}
+
+package guis;
+
+import BreezySwing.*;
+import objects.*;
+import java.util.ArrayList;
+import javax.swing.*;
+
+public class SortGUI extends GBDialog {
+	private AllStudents students;
+	private JButton nameSortButton = addButton("Sort By Name", 1,1,1,1);
+	private JButton gradeSortButton = addButton("Sort By Grade", 1,2,1,1);
+	private JList<String> list = addList(2,1,1,1);
+	private DefaultListModel<String> model = (DefaultListModel<String>) list.getModel();
+	
+	public SortGUI(JFrame frm, AllStudents students) {
+		super(frm);
+		this.students = students;
+		setSize(500, 300);
+		setTitle("Sort Students");
+	}
+	
+	public void buttonClicked(JButton buttonObj) {
+		if(buttonObj == nameSortButton) {
+			
+		}
+		if(buttonObj == gradeSortButton) {
+			
+		}
+	}
+
+	public void resetFrame() {
+		
+	}
+}
