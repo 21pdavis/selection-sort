@@ -1,1 +1,52 @@
+package guis;
+
+import BreezySwing.*;
+import objects.*;
+import java.util.ArrayList;
+import javax.swing.*;
+
+@SuppressWarnings ({"serial", "unused"})
+public class CreateStudentGUI extends GBDialog {
+	private AllStudents students;
+	private Statistics stats;
+	private JLabel instructionsLabel = addLabel("When Inputting Grades, Separate the Grades with Commas", 1,1,1,1);
+	private JLabel nameLabel = addLabel("Name: ", 2,1,1,1);
+	private JTextField nameField = addTextField("", 2,2,1,1);
+	private JLabel testsLabel = addLabel("Up to Five Test Grades: ", 3,1,1,1);
+	private JTextField testsField = addTextField("", 3,2,1,1);
+	private JLabel quizzesLabel = addLabel("Up to Eight Quiz Grades: ", 4,1,1,1);
+	private JTextField quizzesField = addTextField("", 4,2,1,1);
+	private JLabel homeworkAverageLabel = addLabel("Homework Average", 5,1,1,1);
+	private JTextField homeworkAverageField = addTextField("", 5,2,1,1);
+	private JButton inputButton = addButton("Create Student", 6,1,1,1);
+	private JButton exitButton = addButton("Exit", 7,1,1,1);
+	private JButton resetButton = addButton("Reset", 7,2,1,1);
+	
+	public void buttonClicked(JButton buttonObj) {
+		if(buttonObj == inputButton) {
+			
+		}
+		if(buttonObj == exitButton) {
+			
+		}
+		if(buttonObj == resetButton) {
+			
+		}
+	}
+	
+	public CreateStudentGUI(JFrame frm, AllStudents students, Statistics stats) {
+		super(frm);
+		this.students = students;
+		this.stats = stats;
+		setSize(500, 300);
+		setTitle("Create a Student");
+	}
+
+	public void resetFrame() {
+		nameField.setText("");
+		testsField.setText("");
+		quizzesField.setText("");
+		homeworkAverageField.setText("");
+	}
+}
 
