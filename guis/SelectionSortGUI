@@ -1,1 +1,45 @@
+package guis;
 
+import BreezySwing.*;
+import objects.*;
+import javax.swing.*;
+
+@SuppressWarnings ({"serial", "unused"})
+public class SelectionSortGUI extends GBFrame {
+	private static JFrame frm = new SelectionSortGUI();
+	private AllStudents students = new AllStudents();
+	private Statistics stats = new Statistics();
+	private CreateStudentGUI createStudentGUI = new CreateStudentGUI(frm, students, stats);
+	private SortGUI sortGUI = new SortGUI(frm, students);
+	private JLabel welcomeLabel = addLabel("Welcome to the Student Sorting Program!", 1,1,1,1);
+	private JButton inputStudentButton = addButton("Create Student", 2,1,1,1);
+	private JButton sortButton = addButton("Sorting Window", 2,2,1,1);
+	private JButton statsButton = addButton("Stats Window", 2,3,1,1);
+	private JButton exitButton = addButton("Exit", 3,1,1,1);
+	private JButton resetButton = addButton("Reset", 3,2,1,1);
+	
+	public void buttonClicked(JButton buttonObj) {
+		if(buttonObj == inputStudentButton) {
+			createStudentGUI.resetFrame();
+			createStudentGUI.setVisible(true);
+		}
+		if(buttonObj == sortButton) {
+			
+		}
+		if(buttonObj == statsButton) {
+			
+		}
+		if(buttonObj == exitButton) {
+			
+		}
+		if(buttonObj == resetButton) {
+			
+		}
+	}
+	
+	public static void main(String[] args) {
+		frm.setTitle("Student Sorting Program");
+		frm.setSize(600, 200);
+		frm.setVisible(true);
+	}
+}
