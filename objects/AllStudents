@@ -3,5 +3,17 @@ package objects;
 import java.util.ArrayList;
 
 public class AllStudents {
-	private ArrayList<StudentInfo> allStudents = new ArrayList<StudentInfo>();
+	private ArrayList<StudentInfo> students = new ArrayList<StudentInfo>();
+	
+	public void addStudent(String name, double[] grades, double[] quizzes) {
+		
+	}
+	
+	private void gradeSort() {
+
+	}
+	
+	private void nameSort() {
+		
+	}
 }
