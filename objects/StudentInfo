@@ -12,6 +12,7 @@ public class StudentInfo {
 	public StudentInfo() {
 		name = "";
 		homeworkAverage = 0;
+		finalAverage = 0;
 	}
 	
 	public StudentInfo(String name, double homeworkAverage, ArrayList<Double> testGrades, ArrayList<Double> quizGrades) {
