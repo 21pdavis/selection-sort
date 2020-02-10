@@ -7,10 +7,11 @@ import javax.swing.*;
 @SuppressWarnings ({"serial", "unused"})
 public class SelectionSortGUI extends GBFrame {
 	private static JFrame frm = new SelectionSortGUI();
-	private AllStudents students = new AllStudents();
+	private AllStudents allStudents = new AllStudents();
 	private Statistics stats = new Statistics();
-	private CreateStudentGUI createStudentGUI = new CreateStudentGUI(frm, students, stats);
-	private SortGUI sortGUI = new SortGUI(frm, students);
+	private CreateStudentGUI createStudentGUI = new CreateStudentGUI(frm, allStudents, stats);
+	private SortGUI sortGUI = new SortGUI(frm, allStudents);
+	private StatsGUI statsGUI = new StatsGUI(frm, stats);
 	private JLabel welcomeLabel = addLabel("Welcome to the Student Sorting Program!", 1,1,1,1);
 	private JButton inputStudentButton = addButton("Create Student", 2,1,1,1);
 	private JButton sortButton = addButton("Sorting Window", 2,2,1,1);
@@ -24,17 +25,23 @@ public class SelectionSortGUI extends GBFrame {
 			createStudentGUI.setVisible(true);
 		}
 		if(buttonObj == sortButton) {
-			
+			sortGUI.resetFrame();
+			sortGUI.setVisible(true);
 		}
 		if(buttonObj == statsButton) {
-			
+			statsGUI.resetFrame();
+			statsGUI.setVisible(true);
 		}
 		if(buttonObj == exitButton) {
-			
+			System.exit(0);
 		}
 		if(buttonObj == resetButton) {
-			
+			resetFrame();
 		}
+	}
+	
+	private void resetFrame() {
+		
 	}
 	
 	public static void main(String[] args) {
