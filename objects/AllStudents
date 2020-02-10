@@ -5,12 +5,19 @@ import java.util.ArrayList;
 public class AllStudents {
 	private ArrayList<StudentInfo> students = new ArrayList<StudentInfo>();
 	
-	public void addStudent(String name, double[] grades, double[] quizzes) {
+	public void addStudent(String name, double homeworkAverage, double[] tests, double[] quizzes) {
+		ArrayList<Double> testNums = new ArrayList<Double>();
+		ArrayList<Double> quizNums = new ArrayList<Double>();
 		
+		students.add(new StudentInfo(name, homeworkAverage, testNums, quizNums));
+	}
+	
+	public ArrayList<StudentInfo> getStudents() {
+		return students;
 	}
 	
 	private void gradeSort() {
-
+		
 	}
 	
 	private void nameSort() {
