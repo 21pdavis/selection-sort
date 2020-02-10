@@ -1,1 +1,21 @@
+package guis;
 
+import BreezySwing.*;
+import objects.*;
+import java.util.ArrayList;
+import javax.swing.*;
+
+public class StatsGUI extends GBDialog{
+	private Statistics stats;
+	
+	public StatsGUI(JFrame frm, Statistics stats) {
+		super(frm);
+		this.stats = stats;
+		setSize(500, 300);
+		setTitle("Statistics Display");
+	}
+
+	public void resetFrame() {
+		
+	}
+}
