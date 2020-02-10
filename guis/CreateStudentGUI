@@ -7,7 +7,7 @@ import javax.swing.*;
 
 @SuppressWarnings ({"serial", "unused"})
 public class CreateStudentGUI extends GBDialog {
-	private AllStudents students;
+	private AllStudents allStudents;
 	private Statistics stats;
 	private JLabel instructionsLabel = addLabel("When Inputting Grades, Separate the Grades with Commas", 1,1,1,1);
 	private JLabel nameLabel = addLabel("Name: ", 2,1,1,1);
@@ -24,19 +24,68 @@ public class CreateStudentGUI extends GBDialog {
 	
 	public void buttonClicked(JButton buttonObj) {
 		if(buttonObj == inputButton) {
-			
+			inputStudentInfo();
 		}
 		if(buttonObj == exitButton) {
-			
+			setVisible(false);
 		}
 		if(buttonObj == resetButton) {
-			
+			resetFrame();
 		}
 	}
 	
-	public CreateStudentGUI(JFrame frm, AllStudents students, Statistics stats) {
+	private void inputStudentInfo() {
+		boolean errorFound = false;
+		if(allStudents.getStudents().size() <= 15) {
+			try {
+				allStudents.addStudent(nameField.getText(), Double.parseDouble(homeworkAverageField.getText()), getTestStrings(), getQuizStrings());
+			}
+			catch(NumberFormatException e) {
+				messageBox("Error in number input:" + '\n' + "Include only spaces, commas, and numbers in inputs");
+				errorFound = true;
+			}
+			catch(ArrayIndexOutOfBoundsException e) {
+				messageBox("Input only up to 5 quiz grades and" + '\n' + "up to 8 test grades");
+			}
+			if(errorFound == false) {
+				messageBox("Student successfully input");
+				resetFrame();
+			}
+		}
+		else {
+			messageBox("Input only fifteen students");
+		}
+	}
+	
+	private double[] getTestStrings() {
+		double[] testNums = new double[8];
+		String[] testStrings = new String[5];
+		testStrings = testsField.getText().split(",");
+		
+		for(int i = 0; i < testStrings.length; i++) {
+			testStrings[i] = testStrings[i].trim();
+			testNums[i] = Double.parseDouble(testStrings[i]);
+		}
+		
+		return testNums;
+	}
+	
+	private double[] getQuizStrings(){
+		double[] quizNums = new double[8];
+		String[] quizStrings = new String[8];
+		quizStrings = quizzesField.getText().split(",");
+		
+		for(int i = 0; i < quizStrings.length; i++) {
+			quizStrings[i] = quizStrings[i].trim();
+			quizNums[i] = Double.parseDouble(quizStrings[i]);
+		}
+		
+		return quizNums;
+	}
+	
+	public CreateStudentGUI(JFrame frm, AllStudents allStudents, Statistics stats) {
 		super(frm);
-		this.students = students;
+		this.allStudents = allStudents;
 		this.stats = stats;
 		setSize(500, 300);
 		setTitle("Create a Student");
@@ -49,4 +98,3 @@ public class CreateStudentGUI extends GBDialog {
 		homeworkAverageField.setText("");
 	}
 }
-
