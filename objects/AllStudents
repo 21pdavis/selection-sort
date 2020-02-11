@@ -4,32 +4,29 @@ import java.util.ArrayList;
 
 public class AllStudents {
 	private ArrayList<StudentInfo> students = new ArrayList<StudentInfo>();
+	private ArrayList<StudentInfo> gradeSortedStudents = new ArrayList<StudentInfo>();
+	private ArrayList<StudentInfo> nameSortedStudents = new ArrayList<StudentInfo>();
 	
 	public void addStudent(String name, double homeworkAverage, double[] tests, double[] quizzes) {
 		ArrayList<Double> testNums = new ArrayList<Double>();
 		ArrayList<Double> quizNums = new ArrayList<Double>();
 		
 		students.add(new StudentInfo(name, homeworkAverage, testNums, quizNums));
+		gradeSort();
+		nameSort();
 	}
 	
 	public ArrayList<StudentInfo> getStudents() {
 		return students;
 	}
 	
-	private ArrayList<StudentInfo> gradeSort(ArrayList<StudentInfo> students) {
-		int minIndex = 0;
-		StudentInfo min = new StudentInfo();
-		for(int i = 0; i < students.size(); i++){
-			minIndex = i;
-			min = students[i].getFinalAverage();
-			for(int j = i + 1; j < students.size(); j++){
-				if(students[j].getFinalAverage() < students[min].getFinalAverage()){
-					minIndex = j;
-					min = students[j];
-				}
+	private void gradeSort() {
+		gradeSortedStudents = students;
+		for(int i = 0; i < gradeSortedStudents.size() - 1; i++){
+			int maxIndex = i;
+			for(int j = i + 1; j < gradeSortedStudents.size(); j++){
+				if(gradeSortedStudents.get(j).getFinalAverage() > gradeSortedStudents
 			}
-			students[minIndex] = students[i];
-			students[i] = min;
 		}
 	}
 	
