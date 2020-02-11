@@ -24,7 +24,23 @@ public class CreateStudentGUI extends GBDialog {
 	
 	public void buttonClicked(JButton buttonObj) {
 		if(buttonObj == inputButton) {
-			inputStudentInfo();
+			boolean errorFound = false;
+			if(allStudents.getStudents().size() + 1 <= 15) {
+				try{
+					inputStudentInfo();
+				}
+				catch(NumberFormatException e) {
+					messageBox("Error in number input:" + '\n' + "Include only spaces, commas, and numbers in inputs");
+					errorFound = true;
+				}
+				catch(ArrayIndexOutOfBoundsException e) {
+					messageBox("Input only up to 5 quiz grades and" + '\n' + "up to 8 test grades");
+				}
+			}
+			else{
+				messageBox("Input only 15 students");
+				resetFrame();
+			}
 		}
 		if(buttonObj == exitButton) {
 			setVisible(false);
@@ -35,27 +51,8 @@ public class CreateStudentGUI extends GBDialog {
 	}
 	
 	private void inputStudentInfo() {
-		boolean errorFound = false;
-		if(allStudents.getStudents().size() + 1 <= 15) {
-			try {
-				allStudents.addStudent(nameField.getText(), Double.parseDouble(homeworkAverageField.getText()), 
-				getTestList(), getQuizList());
-			}
-			catch(NumberFormatException e) {
-				messageBox("Error in number input:" + '\n' + "Include only spaces, commas, and numbers in inputs");
-				errorFound = true;
-			}
-			catch(ArrayIndexOutOfBoundsException e) {
-				messageBox("Input only up to 5 quiz grades and" + '\n' + "up to 8 test grades");
-			}
-		}
-		else {
-			messageBox("Input only fifteen students");
-		}
-		if(errorFound == false) {
-			messageBox("Student successfully input");
-			resetFrame();
-		}
+		allStudents.addStudent(nameField.getText(), Double.parseDouble(homeworkAverageField.getText()),
+		getTestList(), getQuizList());
 	}
 	
 	private ArrayList<Double> getTestList() {
