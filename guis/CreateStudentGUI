@@ -47,10 +47,10 @@ public class CreateStudentGUI extends GBDialog {
 			catch(ArrayIndexOutOfBoundsException e) {
 				messageBox("Input only up to 5 quiz grades and" + '\n' + "up to 8 test grades");
 			}
-			if(errorFound == false) {
-				messageBox("Student successfully input");
-				resetFrame();
-			}
+		}
+		if(errorFound == false) {
+			messageBox("Student successfully input");
+			resetFrame();
 		}
 		else {
 			messageBox("Input only fifteen students");
