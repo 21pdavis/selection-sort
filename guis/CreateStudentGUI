@@ -36,7 +36,7 @@ public class CreateStudentGUI extends GBDialog {
 	
 	private void inputStudentInfo() {
 		boolean errorFound = false;
-		if(allStudents.getStudents().size() <= 15) {
+		if(allStudents.getStudents().size() + 1 <= 15) {
 			try {
 				allStudents.addStudent(nameField.getText(), Double.parseDouble(homeworkAverageField.getText()), getTestStrings(), getQuizStrings());
 			}
@@ -48,18 +48,19 @@ public class CreateStudentGUI extends GBDialog {
 				messageBox("Input only up to 5 quiz grades and" + '\n' + "up to 8 test grades");
 			}
 		}
+		else {
+			messageBox("Input only fifteen students");
+		}
 		if(errorFound == false) {
 			messageBox("Student successfully input");
 			resetFrame();
 		}
-		else {
-			messageBox("Input only fifteen students");
-		}
 	}
 	
-	private double[] getTestStrings() {
-		double[] testNums = new double[8];
+	private ArrayList<Double> getTestStrings() {// fix
+		double[] testNums = new double[5];
 		String[] testStrings = new String[5];
+		ArrayList<Double> testNumsList = new ArrayList<Double>();
 		testStrings = testsField.getText().split(",");
 		
 		for(int i = 0; i < testStrings.length; i++) {
@@ -67,12 +68,17 @@ public class CreateStudentGUI extends GBDialog {
 			testNums[i] = Double.parseDouble(testStrings[i]);
 		}
 		
-		return testNums;
+		for(int i = 0; i < testNums.length; i++) {
+			testNumsList.add(testNums[i]);
+		}
+		
+		return testNumsList;
 	}
 	
-	private double[] getQuizStrings(){
+	private ArrayList<Double> getQuizStrings(){// fix
 		double[] quizNums = new double[8];
 		String[] quizStrings = new String[8];
+		ArrayList<Double> quizNumsList = new ArrayList<Double>();
 		quizStrings = quizzesField.getText().split(",");
 		
 		for(int i = 0; i < quizStrings.length; i++) {
@@ -80,7 +86,11 @@ public class CreateStudentGUI extends GBDialog {
 			quizNums[i] = Double.parseDouble(quizStrings[i]);
 		}
 		
-		return quizNums;
+		for(int i = 0; i < quizNums.length; i++) {
+			quizNumsList.add(quizNums[i]);
+		}
+		
+		return quizNumsList;
 	}
 	
 	public CreateStudentGUI(JFrame frm, AllStudents allStudents, Statistics stats) {
