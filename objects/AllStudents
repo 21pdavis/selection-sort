@@ -7,11 +7,8 @@ public class AllStudents {
 	private ArrayList<StudentInfo> gradeSortedStudents = new ArrayList<StudentInfo>();
 	private ArrayList<StudentInfo> nameSortedStudents = new ArrayList<StudentInfo>();
 	
-	public void addStudent(String name, double homeworkAverage, double[] tests, double[] quizzes) {
-		ArrayList<Double> testNums = new ArrayList<Double>();
-		ArrayList<Double> quizNums = new ArrayList<Double>();
-		
-		students.add(new StudentInfo(name, homeworkAverage, testNums, quizNums));
+	public void addStudent(String name, double homeworkAverage, ArrayList<Double> tests, ArrayList<Double> quizzes) {
+		students.add(new StudentInfo(name, homeworkAverage, tests, quizzes));
 		gradeSort();
 		nameSort();
 	}
@@ -20,17 +17,41 @@ public class AllStudents {
 		return students;
 	}
 	
+	public ArrayList<StudentInfo> getGradeSortedStudents(){
+		return gradeSortedStudents;
+	}
+	
+	public ArrayList<StudentInfo> getNameSortedStudents(){
+		return nameSortedStudents;
+	}
+	
 	private void gradeSort() {
 		gradeSortedStudents = students;
-		for(int i = 0; i < gradeSortedStudents.size() - 1; i++){
+		for(int i = 0; i < gradeSortedStudents.size(); i++){
 			int maxIndex = i;
 			for(int j = i + 1; j < gradeSortedStudents.size(); j++){
-				if(gradeSortedStudents.get(j).getFinalAverage() > gradeSortedStudents
+				if(gradeSortedStudents.get(j).getFinalAverage() > gradeSortedStudents.get(maxIndex).getFinalAverage()) {
+					maxIndex = j;
+				}
 			}
+			StudentInfo temp = gradeSortedStudents.get(maxIndex);
+			gradeSortedStudents.set(maxIndex, gradeSortedStudents.get(i));
+			gradeSortedStudents.set(i, temp);
 		}
 	}
 	
 	private void nameSort() {
-		
+		nameSortedStudents = students;
+		for(int i = 0; i < nameSortedStudents.size(); i++){
+			int minIndex = i;
+			for(int j = i + 1; j < nameSortedStudents.size(); j++){
+				if(nameSortedStudents.get(j).getName().compareTo(nameSortedStudents.get(minIndex).getName()) < 0) {
+					minIndex = j;
+				}
+			}
+			StudentInfo temp = nameSortedStudents.get(minIndex);
+			nameSortedStudents.set(minIndex, nameSortedStudents.get(i));
+			nameSortedStudents.set(i, temp);
+		}
 	}
 }
