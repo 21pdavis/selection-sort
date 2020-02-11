@@ -16,8 +16,21 @@ public class AllStudents {
 		return students;
 	}
 	
-	private void gradeSort() {
-		
+	private ArrayList<StudentInfo> gradeSort(ArrayList<StudentInfo> students) {
+		int minIndex = 0;
+		StudentInfo min = new StudentInfo();
+		for(int i = 0; i < students.size(); i++){
+			minIndex = i;
+			min = students[i].getFinalAverage();
+			for(int j = i + 1; j < students.size(); j++){
+				if(students[j].getFinalAverage() < students[min].getFinalAverage()){
+					minIndex = j;
+					min = students[j];
+				}
+			}
+			students[minIndex] = students[i];
+			students[i] = min;
+		}
 	}
 	
 	private void nameSort() {
