@@ -38,7 +38,8 @@ public class CreateStudentGUI extends GBDialog {
 		boolean errorFound = false;
 		if(allStudents.getStudents().size() + 1 <= 15) {
 			try {
-				allStudents.addStudent(nameField.getText(), Double.parseDouble(homeworkAverageField.getText()), getTestStrings(), getQuizStrings());
+				allStudents.addStudent(nameField.getText(), Double.parseDouble(homeworkAverageField.getText()), 
+				getTestList(), getQuizList());
 			}
 			catch(NumberFormatException e) {
 				messageBox("Error in number input:" + '\n' + "Include only spaces, commas, and numbers in inputs");
@@ -57,37 +58,31 @@ public class CreateStudentGUI extends GBDialog {
 		}
 	}
 	
-	private ArrayList<Double> getTestStrings() {// fix
-		double[] testNums = new double[5];
-		String[] testStrings = new String[5];
-		ArrayList<Double> testNumsList = new ArrayList<Double>();
-		testStrings = testsField.getText().split(",");
+	private ArrayList<Double> getTestList() {
+		ArrayList<Double> testNums = new ArrayList<Double>();
+		String[] testStrings = testsField.getText().split(",");
 		
-		for(int i = 0; i < testStrings.length; i++) {
-			testStrings[i] = testStrings[i].trim();
-			testNums[i] = Double.parseDouble(testStrings[i]);
+		for(int i = 0; i < testStrings.length; i++){
+			quizStrings[i] = quizStrings[i].trim();
 		}
 		
-		for(int i = 0; i < testNums.length; i++) {
-			testNumsList.add(testNums[i]);
+		for(int i = 0; i < testStrings.length; i++){
+			testNums.add(Double.parseDouble(testStrings[i]);
 		}
 		
-		return testNumsList;
+		return testNums;
 	}
 	
-	private ArrayList<Double> getQuizStrings(){// fix
-		double[] quizNums = new double[8];
-		String[] quizStrings = new String[8];
-		ArrayList<Double> quizNumsList = new ArrayList<Double>();
-		quizStrings = quizzesField.getText().split(",");
+	private ArrayList<Double> getQuizList(){
+		String[] quizStrings = quizzesField.getText().split(",");
+		ArrayList<Double> quizNums = new ArrayList<Double>();
 		
-		for(int i = 0; i < quizStrings.length; i++) {
+		for(int i = 0; i < quizStrings.length; i++){
 			quizStrings[i] = quizStrings[i].trim();
-			quizNums[i] = Double.parseDouble(quizStrings[i]);
 		}
-		
-		for(int i = 0; i < quizNums.length; i++) {
-			quizNumsList.add(quizNums[i]);
+
+		for(int i = 0; i < quizStrings.length; i++) {
+			quizNums.add(Double.parseInt(quizStrings[i]));
 		}
 		
 		return quizNumsList;
