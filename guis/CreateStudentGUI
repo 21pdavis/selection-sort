@@ -8,7 +8,6 @@ import javax.swing.*;
 @SuppressWarnings ({"serial", "unused"})
 public class CreateStudentGUI extends GBDialog {
 	private AllStudents allStudents;
-	private Statistics stats;
 	private JLabel instructionsLabel = addLabel("When Inputting Grades, Separate the Grades with Commas", 1,1,1,1);
 	private JLabel nameLabel = addLabel("Name: ", 2,1,1,1);
 	private JTextField nameField = addTextField("", 2,2,1,1);
@@ -35,12 +34,19 @@ public class CreateStudentGUI extends GBDialog {
 				}
 				catch(ArrayIndexOutOfBoundsException e) {
 					messageBox("Input only up to 5 quiz grades and" + '\n' + "up to 8 test grades");
+					errorFound = true;
 				}
 			}
-			else{
+			else if(allStudents.getStudents().size() > 15){
 				messageBox("Input only 15 students");
 				resetFrame();
 			}
+			// resume programming here
+			if(errorFound == false) {
+				messageBox("Student Info Successfully Input");
+				resetFrame();
+			}
+			
 		}
 		if(buttonObj == exitButton) {
 			setVisible(false);
@@ -57,15 +63,15 @@ public class CreateStudentGUI extends GBDialog {
 	
 	private ArrayList<Double> getTestList() {
 		ArrayList<Double> testNums = new ArrayList<Double>();
-		//String[] testString = new String[5];
-		String[5] testStrings = testsField.getText().split(",");
+		String[] testStrings = new String[5];
+		testStrings = testsField.getText().split(",");
 		
 		for(int i = 0; i < testStrings.length; i++){
-			quizStrings[i] = quizStrings[i].trim();
+			testStrings[i] = testStrings[i].trim();
 		}
 		
 		for(int i = 0; i < testStrings.length; i++){
-			testNums.add(Double.parseDouble(testStrings[i]);
+			testNums.add(Double.parseDouble(testStrings[i]));
 		}
 		
 		return testNums;
@@ -73,24 +79,23 @@ public class CreateStudentGUI extends GBDialog {
 	
 	private ArrayList<Double> getQuizList(){
 		ArrayList<Double> quizNums = new ArrayList<Double>();
-		//String[] quizStrings = new String[8];
-		String[8] quizStrings = quizzesField.getText().split(",");
+		String[] quizStrings = new String[8];
+		quizStrings = quizzesField.getText().split(",");
 		
 		for(int i = 0; i < quizStrings.length; i++){
 			quizStrings[i] = quizStrings[i].trim();
 		}
 
 		for(int i = 0; i < quizStrings.length; i++) {
-			quizNums.add(Double.parseInt(quizStrings[i]));
+			quizNums.add(Double.parseDouble(quizStrings[i]));
 		}
 		
-		return quizNumsList;
+		return quizNums;
 	}
 	
-	public CreateStudentGUI(JFrame frm, AllStudents allStudents, Statistics stats) {
+	public CreateStudentGUI(JFrame frm, AllStudents allStudents) {
 		super(frm);
 		this.allStudents = allStudents;
-		this.stats = stats;
 		setSize(500, 300);
 		setTitle("Create a Student");
 	}
