@@ -3,9 +3,15 @@ package objects;
 import java.util.ArrayList;
 
 public class AllStudents {
-	private ArrayList<StudentInfo> students = new ArrayList<StudentInfo>();
-	private ArrayList<StudentInfo> gradeSortedStudents = new ArrayList<StudentInfo>();
-	private ArrayList<StudentInfo> nameSortedStudents = new ArrayList<StudentInfo>();
+	private ArrayList<StudentInfo> students;
+	private ArrayList<StudentInfo> gradeSortedStudents;
+	private ArrayList<StudentInfo> nameSortedStudents;
+	
+	public AllStudents() {
+		students = new ArrayList<StudentInfo>();
+		gradeSortedStudents = new ArrayList<StudentInfo>();
+		nameSortedStudents = new ArrayList<StudentInfo>();
+	}
 	
 	public void addStudent(String name, double homeworkAverage, ArrayList<Double> tests, ArrayList<Double> quizzes) {
 		students.add(new StudentInfo(name, homeworkAverage, tests, quizzes));
