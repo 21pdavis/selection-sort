@@ -1,1 +1,108 @@
+package objects;
 
+import java.util.ArrayList;
+
+public class Statistics {
+	private ArrayList<Double> sortedQuarterAverages = new ArrayList<Double>();
+	
+	public Statistics() {
+		sortedQuarterAverages = new ArrayList<Double>();
+	}
+	
+	public void initStatistics(ArrayList<Double> grades) {
+		sortAverages(grades);
+	}
+	
+	private void sortAverages(ArrayList<Double> grades) {
+		sortedQuarterAverages = grades;
+		for(int i = 0; i < sortedQuarterAverages.size(); i++){
+			int minIndex = i;
+			for(int j = i + 1; j < sortedQuarterAverages.size(); j++){
+				if(sortedQuarterAverages.get(j) < sortedQuarterAverages.get(minIndex)) {
+					minIndex = j;
+				}
+			}
+			double temp = sortedQuarterAverages.get(minIndex);
+			sortedQuarterAverages.set(minIndex, sortedQuarterAverages.get(i));
+			sortedQuarterAverages.set(i, temp);
+		}
+	}
+	
+	public double calculateMean() {
+		int sum = 0;
+		for (int i = 0; i < sortedQuarterAverages.size(); i++) {
+			sum += sortedQuarterAverages.get(i);
+		}
+
+		return sum / sortedQuarterAverages.size();
+	}
+
+	public String calculateMedian(int[] sortedList, int sortedQuarterAverages.size()) {
+		String medianString = "";
+
+		if (sortedQuarterAverages.size() % 2 == 0) {
+			medianString += (sortedList[sortedQuarterAverages.size() / 2 - 1] + sortedList[sortedQuarterAverages.size() / 2]) / 2.0;
+		} else {
+			medianString += sortedList[sortedQuarterAverages.size() / 2];
+		}
+
+		return medianString;
+	}
+
+	public double calculateStandardDeviation() {
+		double[] standardDevArray = new double[sortedQuarterAverages.size()];
+
+		for (int i = 0; i < sortedQuarterAverages.size(); i++) {
+			standardDevArray[i] = Math.pow(sortedQuarterAverages.get(i) - calculateMean(sortedQuarterAverages, sortedQuarterAverages.size()), 2);
+		}
+
+		return Math.sqrt(calculateMeanDouble(standardDevArray, sortedQuarterAverages.size()));
+	}
+
+	public String calculateMode() { // stupid mode >:(
+		String modeString = "";
+		int currentMax = 1, potentialMax = 0, modeCount = 0;
+		ArrayList<Double> modes = new ArrayList<Double>();
+
+		for (int i = 0; i < sortedQuarterAverages.size(); i++) { // loop to find highest occuring number of any mode
+			potentialMax = 0;
+			for (int j = 0; j < sortedQuarterAverages.size(); j++) {
+				if (sortedQuarterAverages.get(j) == sortedQuarterAverages.get(i)) {
+					potentialMax++;
+				}
+			}
+			if (potentialMax > currentMax)
+				currentMax = potentialMax;
+		}
+
+		if (currentMax != 1) {
+			for (int i = 0; i < sortedQuarterAverages.size(); i++) { // add modes to list
+				modeCount = 0;
+				for (int j = 0; j < sortedQuarterAverages.size(); j++) {
+					if (sortedQuarterAverages.get(j) == sortedQuarterAverages.get(i)) {
+						modeCount++;
+						if (modeCount == currentMax) {
+							modes.add(sortedQuarterAverages.get(i));
+						}
+					}
+				}
+			}
+
+			for (int i = 0; i < modes.size(); i++) { // remove repeat values
+				for (int j = i; j < modes.size(); j++) {
+					if (modes.get(j) == modes.get(i)) {
+						modes.remove(j);
+					}
+				}
+			}
+
+			for (int i = 0; i < modes.size(); i++) {
+				modeString += modes.get(i) + " ";
+			}
+		} else {
+			modeString = "There is no mode";
+		}
+
+		return modeString;
+	}
+}
