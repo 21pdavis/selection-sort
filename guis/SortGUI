@@ -13,6 +13,8 @@ public class SortGUI extends GBDialog {
 	private JButton gradeSortButton = addButton("Sort By Grade", 3,1,1,1);
 	private JList<String> list = addList(4,1,1,1);
 	private DefaultListModel<String> model = (DefaultListModel<String>) list.getModel();
+	private JButton exitButton = addButton("Exit", 5,1,1,1);
+	private JButton resetButton = addButton("Reset", 5,2,1,1);
 	
 	public SortGUI(JFrame frm, AllStudents allStudents) {
 		super(frm);
@@ -23,14 +25,30 @@ public class SortGUI extends GBDialog {
 	
 	public void buttonClicked(JButton buttonObj) {
 		if(buttonObj == nameSortButton) {
-			for(int i = 0; i < allStudents.getNameSortedStudents().size(); i++) {
-				model.addElement(allStudents.getNameSortedStudents().get(i).toString());
+			if(allStudents.getStudents().size() > 0) {
+				model.clear();
+				for(int i = 0; i < allStudents.getNameSortedStudents().size(); i++) {
+					model.addElement(allStudents.getNameSortedStudents().get(i).toString());
+				}
 			}
+			else if(allStudents.getStudents().size() <= 0)
+				messageBox("Please input a student first");
 		}
 		if(buttonObj == gradeSortButton) {
-			for(int i = 0; i < allStudents.getGradeSortedStudents().size(); i++) {
-				model.addElement(allStudents.getGradeSortedStudents().get(i).toString());
+			if(allStudents.getStudents().size() > 0) {
+				model.clear();
+				for(int i = 0; i < allStudents.getGradeSortedStudents().size(); i++) {
+					model.addElement(allStudents.getGradeSortedStudents().get(i).toString());
+				}
 			}
+			else
+				messageBox("Please input a student first");
+		}
+		if(buttonObj == exitButton) {
+			setVisible(false);
+		}
+		if(buttonObj == resetButton) {
+			model.clear();
 		}
 	}
 
