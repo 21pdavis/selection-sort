@@ -57,7 +57,8 @@ public class CreateStudentGUI extends GBDialog {
 	
 	private ArrayList<Double> getTestList() {
 		ArrayList<Double> testNums = new ArrayList<Double>();
-		String[] testStrings = testsField.getText().split(",");
+		//String[] testString = new String[5];
+		String[5] testStrings = testsField.getText().split(",");
 		
 		for(int i = 0; i < testStrings.length; i++){
 			quizStrings[i] = quizStrings[i].trim();
@@ -71,8 +72,9 @@ public class CreateStudentGUI extends GBDialog {
 	}
 	
 	private ArrayList<Double> getQuizList(){
-		String[] quizStrings = quizzesField.getText().split(",");
 		ArrayList<Double> quizNums = new ArrayList<Double>();
+		//String[] quizStrings = new String[8];
+		String[8] quizStrings = quizzesField.getText().split(",");
 		
 		for(int i = 0; i < quizStrings.length; i++){
 			quizStrings[i] = quizStrings[i].trim();
