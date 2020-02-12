@@ -7,6 +7,12 @@ import javax.swing.*;
 
 public class StatsGUI extends GBDialog{
 	private Statistics stats;
+	private JLabel instructionsLabel = addLabel("Use this window to see different ways to organize your students' quarter averages!", 1,1,1,1);
+	private JButton meanButton = addButton("Mean", 2,1,1,1);
+	private JButton medianButton = addButton("Median", 2,2,1,1);
+	private JButton modeButton = addButton("Mode", 2,3,1,1);
+	private JButton standardDevButton = addButton("Standard Deviation", 2,4,1,1);
+	private JButton exitButton = addButton("Exit", 3,1,1,1);
 	
 	public StatsGUI(JFrame frm, Statistics stats) {
 		super(frm);
@@ -14,8 +20,22 @@ public class StatsGUI extends GBDialog{
 		setSize(500, 300);
 		setTitle("Statistics Display");
 	}
-
-	public void resetFrame() {
-		
+	
+	public void buttonClicked(JButton buttonObj) {
+		if(buttonObj == meanButton) {
+			
+		}
+		if(buttonObj == medianButton) {
+			
+		}
+		if(buttonObj == modeButton) {
+			
+		}
+		if(buttonObj == standardDevButton) {
+			
+		}
+		if(buttonObj == exitButton) {
+			
+		}
 	}
 }
