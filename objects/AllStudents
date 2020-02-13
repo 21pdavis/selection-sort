@@ -3,24 +3,24 @@ package objects;
 import java.util.ArrayList;
 
 public class AllStudents {
-	private ArrayList<StudentInfo> students;
+	private ArrayList<StudentInfo> allStudents;
 	private ArrayList<StudentInfo> gradeSortedStudents;
 	private ArrayList<StudentInfo> nameSortedStudents;
 	
 	public AllStudents() {
-		students = new ArrayList<StudentInfo>();
+		allStudents = new ArrayList<StudentInfo>();
 		gradeSortedStudents = new ArrayList<StudentInfo>();
 		nameSortedStudents = new ArrayList<StudentInfo>();
 	}
 	
 	public void addStudent(String name, double homeworkAverage, ArrayList<Double> tests, ArrayList<Double> quizzes) {
-		students.add(new StudentInfo(name, homeworkAverage, tests, quizzes));
+		allStudents.add(new StudentInfo(name, homeworkAverage, tests, quizzes));
 		gradeSort();
 		nameSort();
 	}
 	
-	public ArrayList<StudentInfo> getStudents() {
-		return students;
+	public ArrayList<StudentInfo> getAllStudents() {
+		return allStudents;
 	}
 	
 	public ArrayList<StudentInfo> getGradeSortedStudents(){
@@ -32,11 +32,11 @@ public class AllStudents {
 	}
 	
 	private void gradeSort() {
-		gradeSortedStudents = students;
+		gradeSortedStudents = allStudents;
 		for(int i = 0; i < gradeSortedStudents.size(); i++){
 			int maxIndex = i;
 			for(int j = i + 1; j < gradeSortedStudents.size(); j++){
-				if(gradeSortedStudents.get(j).getFinalAverage() > gradeSortedStudents.get(maxIndex).getFinalAverage()) {
+				if(gradeSortedStudents.get(j).getFinalAverage() < gradeSortedStudents.get(maxIndex).getFinalAverage()) {
 					maxIndex = j;
 				}
 			}
@@ -47,7 +47,7 @@ public class AllStudents {
 	}
 	
 	private void nameSort() {
-		nameSortedStudents = students;
+		nameSortedStudents = allStudents;
 		for(int i = 0; i < nameSortedStudents.size(); i++){
 			int minIndex = i;
 			for(int j = i + 1; j < nameSortedStudents.size(); j++){
@@ -59,5 +59,11 @@ public class AllStudents {
 			nameSortedStudents.set(minIndex, nameSortedStudents.get(i));
 			nameSortedStudents.set(i, temp);
 		}
+	}
+	
+	public void resetAllStudents(){
+		allStudents.clear();
+		gradeSortedStudents.clear();
+		nameSortedStudents.clear();
 	}
 }
