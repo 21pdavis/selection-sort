@@ -31,33 +31,30 @@ public class AllStudents {
 		return nameSortedStudents;
 	}
 	
-	private void gradeSort() {
-		gradeSortedStudents = allStudents;
-		for(int i = 0; i < gradeSortedStudents.size(); i++){
-			int maxIndex = i;
-			for(int j = i + 1; j < gradeSortedStudents.size(); j++){
-				if(gradeSortedStudents.get(j).getFinalAverage() < gradeSortedStudents.get(maxIndex).getFinalAverage()) {
-					maxIndex = j;
-				}
-			}
-			StudentInfo temp = gradeSortedStudents.get(maxIndex);
-			gradeSortedStudents.set(maxIndex, gradeSortedStudents.get(i));
-			gradeSortedStudents.set(i, temp);
-		}
+	private void gradeSort(){
+		gradeSortedList = allStudents;
+    		int first; 
+		for (int i = gradeSortedList.size() - 1; i > 0; i--) {
+          		first = 0;   //initialize to subscript of first element
+          		for(int j = 1; j <= i; j ++){ //locate smallest element between positions 1 and i.
+               			if(gradeSortedList.get(j).getFinalAverage() < gradeSortedList.get(first).getFinalAverage())         
+                 		first = j;
+          		}
+			Collections.swap(gradeSortedList, first, i);
+     		}           
 	}
 	
-	private void nameSort() {
+	private void nameSort(){
 		nameSortedStudents = allStudents;
+		int minIndex;
 		for(int i = 0; i < nameSortedStudents.size(); i++){
-			int minIndex = i;
+			minIndex = i;
 			for(int j = i + 1; j < nameSortedStudents.size(); j++){
 				if(nameSortedStudents.get(j).getName().compareTo(nameSortedStudents.get(minIndex).getName()) < 0) {
 					minIndex = j;
 				}
 			}
-			StudentInfo temp = nameSortedStudents.get(minIndex);
-			nameSortedStudents.set(minIndex, nameSortedStudents.get(i));
-			nameSortedStudents.set(i, temp);
+			Collections.swap(nameSortedList, i, temp);
 		}
 	}
 	
