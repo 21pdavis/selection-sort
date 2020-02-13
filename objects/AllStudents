@@ -38,7 +38,7 @@ public class AllStudents {
           		first = 0;   //initialize to subscript of first element
           		for(int j = 1; j <= i; j ++){ //locate smallest element between positions 1 and i.
                			if(gradeSortedList.get(j).getFinalAverage() < gradeSortedList.get(first).getFinalAverage())         
-                 		first = j;
+                 			first = j;
           		}
 			Collections.swap(gradeSortedList, first, i);
      		}           
@@ -50,9 +50,8 @@ public class AllStudents {
 		for(int i = 0; i < nameSortedStudents.size(); i++){
 			minIndex = i;
 			for(int j = i + 1; j < nameSortedStudents.size(); j++){
-				if(nameSortedStudents.get(j).getName().compareTo(nameSortedStudents.get(minIndex).getName()) < 0) {
+				if(nameSortedStudents.get(j).getName().compareTo(nameSortedStudents.get(minIndex).getName()) < 0)
 					minIndex = j;
-				}
 			}
 			Collections.swap(nameSortedList, i, temp);
 		}
