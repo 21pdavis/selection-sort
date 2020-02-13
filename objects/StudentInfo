@@ -50,10 +50,7 @@ public class StudentInfo {
 			quizSum += quizGrades.get(i);
 		}
 		
-		System.out.println(testGrades.size());
-		System.out.println(quizGrades.size());
-		
-		finalAverage = 0.5 * (testSum / testGrades.size()) + 0.3 * (quizSum / quizGrades.size()) + 0.2 * homeworkAverage;
+		finalAverage = Math.round((0.5 * (testSum / testGrades.size()) + 0.3 * (quizSum / quizGrades.size()) + 0.2 * homeworkAverage) * 10) / 10.0;
 	}
 	
 	public double getFinalAverage(){
