@@ -20,6 +20,13 @@ public class CreateStudentGUI extends GBDialog {
 	private JButton inputButton = addButton("Create Student", 6,1,1,1);
 	private JButton exitButton = addButton("Exit", 7,1,1,1);
 	private JButton resetButton = addButton("Reset", 7,2,1,1);
+
+	public CreateStudentGUI(JFrame frm, AllStudents allStudents) {
+		super(frm);
+		this.allStudents = allStudents;
+		setSize(500, 300);
+		setTitle("Create a Student");
+	}
 	
 	public void buttonClicked(JButton buttonObj) {
 		if(buttonObj == inputButton) {
@@ -56,22 +63,31 @@ public class CreateStudentGUI extends GBDialog {
 	}
 	
 	private void inputStudentInfo() {
-		allStudents.addStudent(nameField.getText(), Double.parseDouble(homeworkAverageField.getText()),
-		getTestList(), getQuizList());
+		boolean numsWithinBounds = true;
+		for(int i = 0; i < testNums.size(); i++){
+			if(getTestList.get(i) < 0 || getTestList.get(i) > 100 || getQuizList.get)(i) < 0 || getQuizList.get(i) > 100)
+				numsWithinBounds = false;
+		}
+		if(numsWithinBounds == true)
+			allStudents.addStudent(nameField.getText(), Double.parseDouble(homeworkAverageField.getText()),
+			getTestList(), getQuizList());
+		else{
+			messageBox("Keep quiz and test input within a 0-100 range");
+			resetFrame();
+		}
 	}
 	
 	private ArrayList<Double> getTestList() {
 		ArrayList<Double> testNums = new ArrayList<Double>();
 		String[] testStrings = new String[5];
 		testStrings = testsField.getText().split(",");
+		boolean numsWithinBounds = true;
 		
-		for(int i = 0; i < testStrings.length; i++){
+		for(int i = 0; i < testStrings.length; i++)
 			testStrings[i] = testStrings[i].trim();
-		}
 		
-		for(int i = 0; i < testStrings.length; i++){
+		for(int i = 0; i < testStrings.length; i++)
 			testNums.add(Double.parseDouble(testStrings[i]));
-		}
 		
 		return testNums;
 	}
@@ -81,22 +97,13 @@ public class CreateStudentGUI extends GBDialog {
 		String[] quizStrings = new String[8];
 		quizStrings = quizzesField.getText().split(",");
 		
-		for(int i = 0; i < quizStrings.length; i++){
+		for(int i = 0; i < quizStrings.length; i++)
 			quizStrings[i] = quizStrings[i].trim();
-		}
 
-		for(int i = 0; i < quizStrings.length; i++) {
+		for(int i = 0; i < quizStrings.length; i++)
 			quizNums.add(Double.parseDouble(quizStrings[i]));
-		}
 		
 		return quizNums;
-	}
-	
-	public CreateStudentGUI(JFrame frm, AllStudents allStudents) {
-		super(frm);
-		this.allStudents = allStudents;
-		setSize(500, 300);
-		setTitle("Create a Student");
 	}
 
 	public void resetFrame() {
