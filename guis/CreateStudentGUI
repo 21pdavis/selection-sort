@@ -24,12 +24,12 @@ public class CreateStudentGUI extends GBDialog {
 	public void buttonClicked(JButton buttonObj) {
 		if(buttonObj == inputButton) {
 			boolean errorFound = false;
-			if(allStudents.getStudents().size() + 1 <= 15) {
+			if(allStudents.getAllStudents().size() + 1 <= 15) {
 				try{
 					inputStudentInfo();
 				}
 				catch(NumberFormatException e) {
-					messageBox("Error in number input:" + '\n' + "Include only spaces, commas, and numbers in inputs");
+					messageBox("Error in number input:" + '\n' + "Include only spaces, commas, and numbers in inputs." + '\n' + "Also assure there are no spaces between numbers");
 					errorFound = true;
 				}
 				catch(ArrayIndexOutOfBoundsException e) {
@@ -37,11 +37,10 @@ public class CreateStudentGUI extends GBDialog {
 					errorFound = true;
 				}
 			}
-			else if(allStudents.getStudents().size() > 15){
+			else if(allStudents.getAllStudents().size() > 15){
 				messageBox("Input only 15 students");
 				resetFrame();
 			}
-			// resume programming here
 			if(errorFound == false) {
 				messageBox("Student Info Successfully Input");
 				resetFrame();
